@@ -12,8 +12,8 @@ response = requests.post(
     headers={
         'Content-Type': 'application/json',
         'User-Agent': 'Mozilla/5.0',
-        'Origin': 'https://www.shohoz.com',
-        'Referer': 'https://www.shohoz.com/',
+        'Origin': 'https://eticket.railway.gov.bd,
+        'Referer': 'https://eticket.railway.gov.bd',
     }
 )
 
