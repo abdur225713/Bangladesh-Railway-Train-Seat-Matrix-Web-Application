@@ -6,15 +6,17 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 SEAT_TYPES = [
     "S_CHAIR", "SHOVAN", "SNIGDHA", "F_SEAT", "F_CHAIR", "AC_S", "F_BERTH", "AC_B", "SHULOV", "AC_CHAIR"
 ]
-headers = {
-    'Content-Type': 'application/json',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-    'Referer': 'https://www.shohoz.com/',
-    'Origin': 'https://www.shohoz.com',
-    'Accept': 'application/json, text/plain, */*',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Connection': 'keep-alive',
-}
+response = requests.post(
+    url,
+    json=payload,
+    headers={
+        'Content-Type': 'application/json',
+        'User-Agent': 'Mozilla/5.0',
+        'Origin': 'https://www.shohoz.com',
+        'Referer': 'https://www.shohoz.com/',
+    }
+)
+
 def fetch_train_data(model: str, api_date: str) -> dict:
     url = "https://railspaapi.shohoz.com/v1.0/web/train-routes"
     payload = {
