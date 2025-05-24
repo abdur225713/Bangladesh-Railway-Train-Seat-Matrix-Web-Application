@@ -15,8 +15,7 @@ headers = {
     'Accept-Language': 'en-US,en;q=0.9',
     'Connection': 'keep-alive',
 }
-
--> dict:
+def fetch_train_data(model: str, api_date: str) -> dict:
     url = "https://railspaapi.shohoz.com/v1.0/web/train-routes"
     payload = {
         "model": model,
