@@ -7,7 +7,12 @@ SEAT_TYPES = [
     "S_CHAIR", "SHOVAN", "SNIGDHA", "F_SEAT", "F_CHAIR", "AC_S", "F_BERTH", "AC_B", "SHULOV", "AC_CHAIR"
 ]
 
-def fetch_train_data(model: str, api_date: str) -> dict:
+headers = {
+    'Content-Type': 'application/json',
+    'User-Agent': 'Mozilla/5.0',
+    'Referer': 'https://www.shohoz.com',
+    'Origin': 'https://www.shohoz.com'
+} -> dict:
     url = "https://railspaapi.shohoz.com/v1.0/web/train-routes"
     payload = {
         "model": model,
@@ -19,6 +24,7 @@ def fetch_train_data(model: str, api_date: str) -> dict:
     response.raise_for_status()
     return response.json().get("data")
 
+
 def get_seat_availability(train_model: str, journey_date: str, from_city: str, to_city: str) -> tuple:
     url = "https://railspaapi.shohoz.com/v1.0/web/bookings/search-trips-v2"
     params = {
@@ -29,7 +35,12 @@ def get_seat_availability(train_model: str, journey_date: str, from_city: str, t
     }
 
     try:
-        response = requests.get(url, params=params)
+        headers = {
+    'User-Agent': 'Mozilla/5.0',
+    'Referer': 'https://www.shohoz.com',
+    'Origin': 'https://www.shohoz.com'
+}
+        response = requests.get(url, params=params,headers=headers )
         response.raise_for_status()
         trains = response.json().get("data", {}).get("trains", [])
 
